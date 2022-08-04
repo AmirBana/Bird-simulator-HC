@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float xMin, xMax;
+    public float xMin, xMax, yMin, yMax;
     public float speed;
     [SerializeField] GameObject poopObj;
     //public Transform m_TransToMove;
@@ -32,10 +32,12 @@ public class PlayerController : MonoBehaviour
             if (curTouch.phase == TouchPhase.Moved)
             {
                 float newX = curTouch.deltaPosition.x * sensivity * Time.deltaTime;
-      
+                float newY = curTouch.deltaPosition.y * sensivity * Time.deltaTime;
                 newPos = localMovement ? transform.localPosition : transform.position;
                 newPos.x += newX;
+                newPos.y += newY;
                 newPos.x = Mathf.Clamp(newPos.x, xMin, xMax);
+                newPos.y = Mathf.Clamp(newPos.y, yMin, yMax);
                 if (localMovement)
                 {
                     transform.localPosition = newPos;

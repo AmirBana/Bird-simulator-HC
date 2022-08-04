@@ -11,11 +11,13 @@ public class Humans : MonoBehaviour
     bool isMessed;
     int dir;
     [SerializeField] float speed;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         mess = GameObject.FindWithTag("Mess");
         player = GameObject.FindWithTag("Player");
+        animator = GetComponentInChildren<Animator>();
         isMessed = false;
         offset = 2;
         int r=Random.Range(0, 2);
@@ -49,12 +51,18 @@ public class Humans : MonoBehaviour
     {
         if (transform.position.x <= xMin)
         {
+            animator.SetFloat("Move Dir", 1);
+            Vector3 rotate = new Vector3 (transform.localRotation.eulerAngles.x,transform.localRotation.eulerAngles.y*1,transform.localRotation.eulerAngles.z);
+            transform.Rotate(rotate);
             dir = 1;
         }
         else if (transform.position.x >= xMax)
         {
+            Vector3 rotate = new Vector3(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y * -1, transform.localRotation.eulerAngles.z);
+            //transform.rotation =
+            animator.SetFloat("Move Dir", -1);
             dir = -1;
         }
-        transform.Translate(Vector3.right * dir * speed * Time.deltaTime);
+        transform.Translate(Vector3.right * dir * speed * Time.deltaTime,Space.World);
     }
 }
