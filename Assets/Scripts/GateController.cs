@@ -28,9 +28,14 @@ public class GateController : MonoBehaviour
     }
     void MoveLeftRight()
     {
-        if (transform.position.x <= xMin || transform.position.x >= xMax)
+        if (transform.position.x <= xMin)
         {
-            dir *= -1;
+
+            dir = 1;
+        }
+        else if (transform.position.x >= xMax)
+        {
+            dir = -1;
         }
         transform.Translate(Vector3.right * dir * speed * Time.deltaTime);
     }

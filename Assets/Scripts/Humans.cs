@@ -34,29 +34,26 @@ public class Humans : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print("hello");
-        print(other.gameObject.name);
+       // print("hello");
+       // print(other.gameObject.name);
         if (other.gameObject.CompareTag("Poopi"))
         {
-            print("hey");
+            //print("hey");
             Destroy(other.gameObject,0.1f);
             mess.SetActive(true);
-            mess.transform.position = new Vector3(other.transform.position.x, mess.transform.position.y, other.transform.position.z);
+         //   mess.transform.position = new Vector3(other.transform.position.x, mess.transform.position.y, other.transform.position.z);
             isMessed=true;
         }
     }
-    void FollowBird()
-    {
-        Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z - offset);
-        Vector3 follow = Vector3.Lerp(transform.position, target, speed);
-        transform.position = follow;
-
-    }
     void MoveIdle()
     {
-        if(transform.position.x <= xMin || transform.position.x >= xMax)
+        if (transform.position.x <= xMin)
         {
-            dir *= -1;
+            dir = 1;
+        }
+        else if (transform.position.x >= xMax)
+        {
+            dir = -1;
         }
         transform.Translate(Vector3.right * dir * speed * Time.deltaTime);
     }

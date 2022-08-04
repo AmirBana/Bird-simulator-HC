@@ -8,6 +8,7 @@ TagManager:
   - PoopHuman
   - Mess
   - Poopi
+  - Obstacle
   layers:
   - Default
   - TransparentFX
