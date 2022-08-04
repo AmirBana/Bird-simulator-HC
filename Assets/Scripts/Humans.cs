@@ -11,6 +11,7 @@ public class Humans : MonoBehaviour
     bool isMessed;
     int dir;
     [SerializeField] float speed;
+    [SerializeField] float turnSpeed;
     Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -21,12 +22,18 @@ public class Humans : MonoBehaviour
         isMessed = false;
         offset = 2;
         int r=Random.Range(0, 2);
-        if (r == 0) dir = -1;
-        else if (r == 1) dir = 1;
+        if (r == 0)
+        {
+            transform.Rotate(Vector3.up * -90);
+            dir = -1;
+        }
+        else if (r == 1)
+        {
+            transform.Rotate(Vector3.up * 90);
+            dir = 1;
+        }
         mess.SetActive(false);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if(!isMessed)
@@ -36,31 +43,33 @@ public class Humans : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-       // print("hello");
-       // print(other.gameObject.name);
         if (other.gameObject.CompareTag("Poopi"))
         {
-            //print("hey");
+            animator.SetTrigger("Mess");
             Destroy(other.gameObject,0.1f);
             mess.SetActive(true);
          //   mess.transform.position = new Vector3(other.transform.position.x, mess.transform.position.y, other.transform.position.z);
             isMessed=true;
+            Stopped();
         }
+    }
+    void Stopped()
+    {
+        transform.Rotate(Vector3.up * -90 * dir);
+        animator.SetTrigger("Mess");
     }
     void MoveIdle()
     {
         if (transform.position.x <= xMin)
         {
-            animator.SetFloat("Move Dir", 1);
-            Vector3 rotate = new Vector3 (transform.localRotation.eulerAngles.x,transform.localRotation.eulerAngles.y*1,transform.localRotation.eulerAngles.z);
-            transform.Rotate(rotate);
+            if (dir == -1)
+                transform.Rotate(Vector3.up * 180);
             dir = 1;
         }
         else if (transform.position.x >= xMax)
         {
-            Vector3 rotate = new Vector3(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y * -1, transform.localRotation.eulerAngles.z);
-            //transform.rotation =
-            animator.SetFloat("Move Dir", -1);
+            if (dir == 1)
+                transform.Rotate(Vector3.up * 180);
             dir = -1;
         }
         transform.Translate(Vector3.right * dir * speed * Time.deltaTime,Space.World);
