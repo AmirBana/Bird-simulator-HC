@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         inGamePanel.SetActive(false);
         lostPanel.SetActive(false);
         winPanel.SetActive(false);
+        print(SceneManager.sceneCount-1 + " :now hole: " + (SceneManager.GetActiveScene().buildIndex));
     }
 
     // Update is called once per frame
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
         gameStart = true;
         startpanel.SetActive(false);
         inGamePanel.SetActive(true);
-
+        
     }
     public void Ammo(int amount)
     {
@@ -67,12 +68,20 @@ public class GameManager : MonoBehaviour
         inGamePanel.SetActive(false);
         lostPanel.SetActive(true);
     }
+    public void GameWin()
+    {
+        inGamePanel.SetActive(false);
+        winPanel.SetActive(true);
+    }
     public void Lost()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void Win()
     {
-
+        if(SceneManager.sceneCount-1 == (SceneManager.GetActiveScene().buildIndex))
+            SceneManager.LoadScene(0);
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

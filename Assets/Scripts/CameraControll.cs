@@ -14,7 +14,7 @@ public class CameraControll : MonoBehaviour
     }
     void LateUpdate()
     {
-        SmoothFollow(); 
+        if(!GameManager.Instance.gamefinish) SmoothFollow();
     }
     public void SmoothFollow()
     {

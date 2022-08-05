@@ -36,18 +36,25 @@ public class PlayerController : MonoBehaviour
         if(transform.position.z >= finishPos.position.z)
         {
             GameManager.Instance.gamefinish = true;
-            print("game Finished");
+            speed = 50;
+            if (!gameOvered) Invoke("WinBird", 2f);
         }
         if(GameManager.Instance.gameOver && !gameOvered)
         {
             DeathBird();
         }    
     }
-    public void DeathBird()
+    void DeathBird()
     {
         particle.Play();
         gameOvered = true;
         Invoke("GameOverActive", 1f);
+    }
+    void WinBird()
+    {
+        gameOvered = true;
+        GameManager.Instance.GameWin();
+        speed = 50f;
     }
     void GameOverActive()
     {
