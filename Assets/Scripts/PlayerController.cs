@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     [SerializeField] GameObject poopObj;
     Transform finishPos;
+    [SerializeField] int poopSize;
     //public Transform m_TransToMove;
     [Space]
     public bool localMovement;
@@ -22,11 +23,15 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(Vector3.forward * speed*Time.deltaTime);
-        SwipeControl();
+       if(GameManager.Instance.gameStart && !GameManager.Instance.gameOver)
+        {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            SwipeControl();
+        }
         TargetDetect();
         if(transform.position.z >= finishPos.position.z)
         {
+            GameManager.Instance.gamefinish = true;
             print("game Finished");
         }
     }
@@ -79,11 +84,10 @@ public class PlayerController : MonoBehaviour
         
         if(Physics.Raycast(ray,out hit,rayHeight))
         {
-            if (hit.collider.tag=="Human")
+            if (hit.collider.tag=="Human" && GameManager.Instance.ammo >= poopSize)
             {
                 var target1 = hit.collider.transform;
                 hit.collider.gameObject.tag = "PoopHuman";
-
                 Pooping();
                 print("hit:"+hit.collider.name);
             }
@@ -93,6 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GameObject obj = Instantiate(poopObj, spawnPos, poopObj.transform.rotation);
+        GameManager.Instance.Ammo(-poopSize);
     }
    
 }
