@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     public float xMin, xMax, yMin, yMax;
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject poopObj;
     Transform finishPos;
     [SerializeField] int poopSize;
+    bool gameOvered;
     //public Transform m_TransToMove;
     [Space]
     public bool localMovement;
@@ -16,8 +18,10 @@ public class PlayerController : MonoBehaviour
     Touch curTouch;
     Vector3 newPos = Vector3.zero;
     Animator animator;
+    [SerializeField] ParticleSystem particle;
     void Start()
     {
+        gameOvered = false;
         animator = GetComponentsInChildren < Animator >()[0];
         finishPos = GameObject.FindWithTag("Finish").transform;
     }
@@ -34,6 +38,20 @@ public class PlayerController : MonoBehaviour
             GameManager.Instance.gamefinish = true;
             print("game Finished");
         }
+        if(GameManager.Instance.gameOver && !gameOvered)
+        {
+            DeathBird();
+        }    
+    }
+    public void DeathBird()
+    {
+        particle.Play();
+        gameOvered = true;
+        Invoke("GameOverActive", 1f);
+    }
+    void GameOverActive()
+    {
+        GameManager.Instance.GameOver();
     }
     void SwipeControl()
     {
@@ -81,13 +99,13 @@ public class PlayerController : MonoBehaviour
         var ray = new Ray(transform.position, Vector3.down);
         Debug.DrawRay(transform.position, Vector3.down*rayHeight, Color.red);
         RaycastHit hit;
-        
         if(Physics.Raycast(ray,out hit,rayHeight))
         {
             if (hit.collider.tag=="Human" && GameManager.Instance.ammo >= poopSize)
             {
                 var target1 = hit.collider.transform;
                 hit.collider.gameObject.tag = "PoopHuman";
+                GameManager.Instance.Ammo(-poopSize);
                 Pooping();
                 print("hit:"+hit.collider.name);
             }
@@ -97,7 +115,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GameObject obj = Instantiate(poopObj, spawnPos, poopObj.transform.rotation);
-        GameManager.Instance.Ammo(-poopSize);
     }
    
 }

@@ -21,7 +21,7 @@ public class Obstacle : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             print("Game Over");
-            Destroy(other.gameObject);
+            GameManager.Instance.gameOver = true;
         }
     }
 }
