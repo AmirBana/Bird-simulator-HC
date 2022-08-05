@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float xMin, xMax, yMin, yMax;
     public float speed;
     [SerializeField] GameObject poopObj;
+    Transform finishPos;
     //public Transform m_TransToMove;
     [Space]
     public bool localMovement;
@@ -17,12 +18,17 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animator = GetComponentsInChildren < Animator >()[0];
+        finishPos = GameObject.FindWithTag("Finish").transform;
     }
     void Update()
     {
         transform.Translate(Vector3.forward * speed*Time.deltaTime);
         SwipeControl();
         TargetDetect();
+        if(transform.position.z >= finishPos.position.z)
+        {
+            print("game Finished");
+        }
     }
     void SwipeControl()
     {
@@ -70,28 +76,23 @@ public class PlayerController : MonoBehaviour
         var ray = new Ray(transform.position, Vector3.down);
         Debug.DrawRay(transform.position, Vector3.down*rayHeight, Color.red);
         RaycastHit hit;
+        
         if(Physics.Raycast(ray,out hit,rayHeight))
         {
-            if(hit.collider.tag=="Human")
+            if (hit.collider.tag=="Human")
             {
                 var target1 = hit.collider.transform;
                 hit.collider.gameObject.tag = "PoopHuman";
-                
-                Pooping(target1.GetChild(0).transform);
+
+                Pooping();
                 print("hit:"+hit.collider.name);
             }
         }
     }
-    void Pooping(Transform target)
+    void Pooping()
     {
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GameObject obj = Instantiate(poopObj, spawnPos, poopObj.transform.rotation);
-        var dir = target.transform.position - obj.transform.position;
-        obj.GetComponent<PoopControl>().dir = dir;
-        print(dir+" targety name:"+target.name);
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
+   
 }

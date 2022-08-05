@@ -7,9 +7,10 @@ public class GateController : MonoBehaviour
     public enum State
     {
         constant,
-        turn
+        horizontal,
+        vertical
     };
-    [SerializeField] float xMin, xMax;
+    [SerializeField] float xMin, xMax, yMin, yMax;
     [SerializeField] float speed;
     public State state; 
     int dir;
@@ -23,7 +24,7 @@ public class GateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (state == State.turn)
+        if (state == State.horizontal)
             MoveLeftRight();
     }
     void MoveLeftRight()

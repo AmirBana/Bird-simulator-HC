@@ -20,6 +20,7 @@ public class Obstacle : MonoBehaviour
         print("obstacle collier:"+other.name);
         if(other.gameObject.CompareTag("Player"))
         {
+            print("Game Over");
             Destroy(other.gameObject);
         }
     }

@@ -141,9 +141,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1145068670426749298}
   - component: {fileID: 6075620608944598653}
+  - component: {fileID: 1016953631}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +173,7 @@ SkinnedMeshRenderer:
   m_GameObject: {fileID: 398114693277318475}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -183,8 +184,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c3e746eaac2e484d829d0c171d63f9b, type: 2}
-  - {fileID: 2100000, guid: 48ddb47f21b4be94db12bdff61fcbd29, type: 2}
+  - {fileID: 2100000, guid: 2a32131bf71490448a5190abe8cce027, type: 2}
+  - {fileID: 2100000, guid: 2a32131bf71490448a5190abe8cce027, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,6 +261,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00026148558, y: 0.17267475, z: -0.12875244}
     m_Extent: {x: 1.2398674, y: 0.63732255, z: 0.3609024}
   m_DirtyAABB: 0
+--- !u!65 &1016953631
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398114693277318475}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: -0.01, y: 0.0127464505, z: 0.007218048}
+  m_Center: {x: 0.0000026148557, y: 0.0059700618, z: -0.0010600712}
 --- !u!1 &504976969520727996
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +874,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3573850048944549314}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.12, y: -0.48, z: -0.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -882,7 +896,7 @@ Animator:
   m_GameObject: {fileID: 3573850048944549314}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7399783acb806ed4b81e6e85b5b721c6, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a1d3de3e4779fa4b8a0cbcb5cfc9d10, type: 2}
+  m_Controller: {fileID: 9100000, guid: 36e5e1b088fc57842a7efecc55665659, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1010,7 +1024,7 @@ SkinnedMeshRenderer:
   m_GameObject: {fileID: 4082174679311421533}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -1021,8 +1035,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c3e746eaac2e484d829d0c171d63f9b, type: 2}
-  - {fileID: 2100000, guid: 48ddb47f21b4be94db12bdff61fcbd29, type: 2}
+  - {fileID: 2100000, guid: 2a32131bf71490448a5190abe8cce027, type: 2}
+  - {fileID: 2100000, guid: 2a32131bf71490448a5190abe8cce027, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1615,7 +1629,7 @@ SkinnedMeshRenderer:
   m_GameObject: {fileID: 5276261592030771360}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
