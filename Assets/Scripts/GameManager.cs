@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using GameAnalyticsSDK;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoSize;
     void Start()
     {
+        GameAnalytics.Initialize();
         ammo = 0;
         gameOver = false;
         gamefinish = false;
@@ -75,10 +77,12 @@ public class GameManager : MonoBehaviour
     }
     public void Lost()
     {
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, "FailLevel", SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void Win()
     {
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "CompleteLevel", SceneManager.GetActiveScene().buildIndex+1);
         if(SceneManager.sceneCount-1 == (SceneManager.GetActiveScene().buildIndex))
             SceneManager.LoadScene(0);
         else

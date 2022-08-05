@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Humans : MonoBehaviour
 {
+    public enum State
+    {
+        move,
+        stop
+    }
     GameObject mess;
     GameObject player;
+    public State state;
     [SerializeField] float xMin, xMax; 
     public float offset;
     bool isMessed;
@@ -36,7 +42,7 @@ public class Humans : MonoBehaviour
     }
     void Update()
     {
-        if(!isMessed)
+        if(!isMessed && state == State.move)
         {
             MoveIdle();
         }
