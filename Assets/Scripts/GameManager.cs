@@ -22,14 +22,13 @@ public class GameManager : MonoBehaviour
     public int initAmmo;
     [SerializeField]
     [HideInInspector]public bool gameStart, gamefinish, gameOver;
-
     [Header("UI Elements")]
     [SerializeField] GameObject startpanel;
     [SerializeField] GameObject inGamePanel;
     [SerializeField] GameObject lostPanel;
     [SerializeField] GameObject winPanel;
     [SerializeField] Slider ammoSlider;
-    [SerializeField] TextMeshProUGUI ammoSize;
+    [SerializeField] TextMeshProUGUI ammoSize; 
     void Start()
     {
         GameAnalytics.Initialize();

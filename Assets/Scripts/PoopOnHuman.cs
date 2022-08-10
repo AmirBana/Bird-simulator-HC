@@ -11,7 +11,6 @@ public class PoopOnHuman : MonoBehaviour
     {
         offset = transform.position - body.transform.position;
     }
-
     // Update is called once per frame
     void Update()
     {

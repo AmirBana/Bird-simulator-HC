@@ -10,7 +10,7 @@ public class CameraControll : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-        offset = transform.position - player.position;
+        offset = transform.localPosition - player.localPosition;
     }
     void LateUpdate()
     {
@@ -18,6 +18,6 @@ public class CameraControll : MonoBehaviour
     }
     public void SmoothFollow()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, player.position.z + offset.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, player.localPosition.z + offset.z);
     }
 }
