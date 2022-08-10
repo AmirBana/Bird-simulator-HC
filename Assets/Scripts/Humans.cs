@@ -9,7 +9,7 @@ public class Humans : MonoBehaviour
         move,
         stop
     }
-    GameObject mess;
+    public GameObject mess;
     GameObject player;
     public State state;
     [SerializeField] float xMin, xMax; 
@@ -22,7 +22,7 @@ public class Humans : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mess = GameObject.FindWithTag("Mess");
+
         player = GameObject.FindWithTag("Player");
         animator = GetComponentInChildren<Animator>();
         isMessed = false;

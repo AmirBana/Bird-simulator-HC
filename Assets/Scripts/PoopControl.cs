@@ -3,6 +3,7 @@ using UnityEngine;
 public class PoopControl : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] GameObject effect;
     void Start()
     {
 
