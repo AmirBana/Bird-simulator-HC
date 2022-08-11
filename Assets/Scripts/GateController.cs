@@ -9,7 +9,6 @@ public class GateController : MonoBehaviour
     {
         constant,
         horizontal,
-        vertical
     };
     [SerializeField] float xMin, xMax, yMin, yMax;
     [SerializeField] float speed;
@@ -32,12 +31,12 @@ public class GateController : MonoBehaviour
     }
     void MoveLeftRight()
     {
-        if (transform.position.x <= xMin)
+        if (transform.localPosition.x <= xMin)
         {
 
             dir = 1;
         }
-        else if (transform.position.x >= xMax)
+        else if (transform.localPosition.x >= xMax)
         {
             dir = -1;
         }

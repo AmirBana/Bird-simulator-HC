@@ -51,10 +51,10 @@ MonoBehaviour:
   xMax: 2
   yMin: 2.7
   yMax: 6.5
-  speed: 3
+  speed: 0
   poopObj: {fileID: 3036554247561422471, guid: 171926e2a6578a940be4adcaaa5eb781, type: 3}
   poopSize: 5
-  localMovement: 0
+  localMovement: 1
   sensivity: 0.1
   particle: {fileID: 1889898425460834875}
 --- !u!135 &1088151921622846246
@@ -65,7 +65,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088151921622846241}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.8
