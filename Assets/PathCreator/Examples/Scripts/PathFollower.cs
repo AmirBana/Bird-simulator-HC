@@ -13,7 +13,8 @@ namespace PathCreation.Examples
         [Header("My Variables")]
         public int sPoint;
 
-        void Start() {
+        void Start() 
+        {
             if (pathCreator != null)
             {
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
@@ -25,7 +26,7 @@ namespace PathCreation.Examples
 
         void Update()
         {
-            if(GameManager.Instance.gameStart && !GameManager.Instance.gameOver)
+            if(GameManager.Instance.gameStart && !GameManager.Instance.gameOver && !GameManager.Instance.gamefinish)
             {
                 if (pathCreator != null)
                 {

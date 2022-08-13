@@ -54,18 +54,22 @@ public class Humans : MonoBehaviour
         }
         if(isMessed)
         {
-            NavMeshFollow();
+            Invoke("NavMeshFollow", 2f);
+        }
+        if(GameManager.Instance.gamefinish)
+        {
+
         }
     }
     void NavMeshFollow()
     {
+        //animator.SetTrigger("Finish");
         navMesh.destination = player.transform.position;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Poopi"))
         {
-            animator.SetTrigger("Mess");
             Destroy(other.gameObject,0.1f);
             mess.SetActive(true);
          //   mess.transform.position = new Vector3(other.transform.position.x, mess.transform.position.y, other.transform.position.z);
