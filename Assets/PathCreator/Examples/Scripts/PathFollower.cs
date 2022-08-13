@@ -10,12 +10,16 @@ namespace PathCreation.Examples
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
         float distanceTravelled;
+        [Header("My Variables")]
+        public int sPoint;
 
         void Start() {
             if (pathCreator != null)
             {
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;
+                transform.position = pathCreator.path.GetPoint(sPoint);
+                //transform.rotation = pathCreator.path.GetRotation(0.5f);
             }
         }
 
