@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class Humans : MonoBehaviour
 {
     public enum State
@@ -19,9 +19,11 @@ public class Humans : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float turnSpeed;
     Animator animator;
+    private NavMeshAgent navMesh;
     // Start is called before the first frame update
     void Start()
     {
+        navMesh = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         animator = GetComponentInChildren<Animator>();
         isMessed = false;
@@ -50,6 +52,14 @@ public class Humans : MonoBehaviour
         {
             MoveIdle();
         }
+        if(isMessed)
+        {
+            NavMeshFollow();
+        }
+    }
+    void NavMeshFollow()
+    {
+        navMesh.destination = player.transform.position;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -60,12 +70,13 @@ public class Humans : MonoBehaviour
             mess.SetActive(true);
          //   mess.transform.position = new Vector3(other.transform.position.x, mess.transform.position.y, other.transform.position.z);
             isMessed=true;
-            Stopped();
+            Stopped(other);
         }
     }
-    void Stopped()
+    void Stopped(Collider other)
     {
-        transform.Rotate(Vector3.up * -90 * dir);
+        var rotPos = Quaternion.LookRotation(other.transform.position);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, rotPos.y, transform.eulerAngles.z);
         animator.SetTrigger("Mess");
     }
     void MoveIdle()
