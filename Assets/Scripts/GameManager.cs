@@ -82,23 +82,10 @@ public class GameManager : MonoBehaviour
     }
     public void Win()
     {
-        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "CompleteLevel", SceneManager.GetActiveScene().buildIndex+1);
-        if(1 == (SceneManager.GetActiveScene().buildIndex))
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "CompleteLevel", SceneManager.GetActiveScene().buildIndex + 1);
+        if (0 == (SceneManager.GetActiveScene().buildIndex))
             SceneManager.LoadScene(0);
         else
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-    private Action completeLevel;
-    public event Action OnCompleteLevel
-    {
-        add {completeLevel += value;}
-        remove { completeLevel -= value; }
-    }
-    protected void Handler_OnCompleteLevel()
-    {
-        if(completeLevel != null)
-        {
-            completeLevel();
-        }
     }
 }

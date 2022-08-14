@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         particle.Play();
         gameOvered = true;
-        Invoke("GameOverActive", 3f);
+        Invoke("GameOverActive", 1f);
     }
     void WinBird()
     {
