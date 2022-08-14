@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -86,5 +87,18 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0);
         else
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    private Action completeLevel;
+    public event Action OnCompleteLevel
+    {
+        add {completeLevel += value;}
+        remove { completeLevel -= value; }
+    }
+    protected void Handler_OnCompleteLevel()
+    {
+        if(completeLevel != null)
+        {
+            completeLevel();
+        }
     }
 }

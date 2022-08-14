@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     {
         particle.Play();
         gameOvered = true;
-        Invoke("GameOverActive", 1f);
+        Invoke("GameOverActive", 3f);
     }
     void WinBird()
     {
@@ -84,19 +84,19 @@ public class PlayerController : MonoBehaviour
                 }
                 if(newX > 0.02)
                 {
-                    animator.SetBool("turn left", false);
-                    animator.SetBool("turn right", true);
+                    //animator.SetBool("turn left", false);
+                    //animator.SetBool("turn right", true);
                 }
                 else if(newX <-0.02)
                 {
-                    animator.SetBool("turn left", true);
-                    animator.SetBool("turn right", false);
+                   // animator.SetBool("turn left", true);
+                   // animator.SetBool("turn right", false);
                 }
             }
             else if( curTouch.phase == TouchPhase.Stationary || curTouch.phase == TouchPhase.Ended)
             {
-                animator.SetBool("turn right", false);
-                animator.SetBool("turn left", false);
+               // animator.SetBool("turn right", false);
+               // animator.SetBool("turn left", false);
             }
         }
     }
@@ -120,8 +120,10 @@ public class PlayerController : MonoBehaviour
     }
     void Pooping()
     {
+        animator.SetTrigger("poop");
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GameObject obj = Instantiate(poopObj, spawnPos, poopObj.transform.rotation);
+        //animator.SetBool("turn left", false);
     }
    
 }

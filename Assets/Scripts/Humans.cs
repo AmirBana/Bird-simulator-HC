@@ -10,6 +10,7 @@ public class Humans : MonoBehaviour
         stationary
     }
     public GameObject mess;
+    Transform finishPos; 
     GameObject player;
     public State state;
     [SerializeField] float xMin, xMax; 
@@ -25,6 +26,7 @@ public class Humans : MonoBehaviour
     {
         navMesh = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
+        finishPos = GameObject.FindWithTag("Finish").transform;
         animator = GetComponentInChildren<Animator>();
         isMessed = false;
         offset = 2;
@@ -56,9 +58,10 @@ public class Humans : MonoBehaviour
         {
             Invoke("NavMeshFollow", 2f);
         }
-        if(GameManager.Instance.gamefinish)
+        if (transform.position.z >= finishPos.position.z || GameManager.Instance.gamefinish)
         {
-
+            animator.SetTrigger("Finish");
+            navMesh.ResetPath();
         }
     }
     void NavMeshFollow()
@@ -99,4 +102,5 @@ public class Humans : MonoBehaviour
         }
         transform.Translate(Vector3.right * dir * speed * Time.deltaTime,Space.World);
     }
+    
 }
