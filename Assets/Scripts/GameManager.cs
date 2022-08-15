@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public int ammo;
     public int maxAmmo;
     public int initAmmo;
+    public int score;
+    [SerializeField] int scoreAmount;
     [SerializeField]
     [HideInInspector]public bool gameStart, gamefinish, gameOver;
     [Header("UI Elements")]
@@ -29,7 +31,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject lostPanel;
     [SerializeField] GameObject winPanel;
     [SerializeField] Slider ammoSlider;
-    [SerializeField] TextMeshProUGUI ammoSize; 
+    [SerializeField] TextMeshProUGUI ammoSize;
+    [SerializeField] TextMeshProUGUI ScoreTxt;
+    [SerializeField] TextMeshProUGUI finalScore;
     void Start()
     {
         GameAnalytics.Initialize();
@@ -38,6 +42,7 @@ public class GameManager : MonoBehaviour
         gamefinish = false;
         gameStart = false;
         ammoSlider.minValue = 0;
+        score = 0;
         ammoSlider.maxValue = maxAmmo;
         Ammo(initAmmo);
         startpanel.SetActive(true);
@@ -74,11 +79,17 @@ public class GameManager : MonoBehaviour
     {
         inGamePanel.SetActive(false);
         winPanel.SetActive(true);
+        finalScore.text = score.ToString();
     }
     public void Lost()
     {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, "FailLevel", SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void OnScoreChange(int kind)
+    {
+        score += scoreAmount * kind;
+        ScoreTxt.text = score.ToString();
     }
     public void Win()
     {
