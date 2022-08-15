@@ -77,7 +77,6 @@ public class Humans : MonoBehaviour
             mess.SetActive(true);
          //   mess.transform.position = new Vector3(other.transform.position.x, mess.transform.position.y, other.transform.position.z);
             isMessed=true;
-            GameManager.Instance.OnScoreChange(+1);
             Stopped(other);
         }
     }

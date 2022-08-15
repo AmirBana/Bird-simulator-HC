@@ -1447,6 +1447,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: man0 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4884053581265185675, guid: 01a41db73051517429a822a058b4679e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01a41db73051517429a822a058b4679e, type: 3}
 --- !u!114 &613277762 stripped
@@ -3528,6 +3533,11 @@ PrefabInstance:
       objectReference: {fileID: 2078424838}
     - target: {fileID: 619721922001438698, guid: 5c9b4030daaac9147833c69dde7ffb52,
         type: 3}
+      propertyPath: initAmmo
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 619721922001438698, guid: 5c9b4030daaac9147833c69dde7ffb52,
+        type: 3}
       propertyPath: winPanel
       value: 
       objectReference: {fileID: 1788237642}
@@ -3661,6 +3671,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8009203908529975972, guid: 7f1da6a6051b43e4e94e6cb629aaa5d2,
+        type: 3}
+      propertyPath: poopObj
+      value: 
+      objectReference: {fileID: 8026598876826660781, guid: b23128abf6bcf974e9393113402c35a6,
+        type: 3}
     - target: {fileID: 8009203909772443727, guid: 7f1da6a6051b43e4e94e6cb629aaa5d2,
         type: 3}
       propertyPath: m_Name

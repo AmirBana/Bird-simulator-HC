@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     }
     public void OnScoreChange(int kind)
     {
-        score += scoreAmount * kind;
+        score += (scoreAmount * kind);
         ScoreTxt.text = score.ToString();
     }
     public void Win()
