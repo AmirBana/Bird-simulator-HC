@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     public int initAmmo;
     public int score;
     [SerializeField] int scoreAmount;
-    [SerializeField]
+    public int health;
+
     [HideInInspector]public bool gameStart, gamefinish, gameOver;
     [Header("UI Elements")]
     [SerializeField] GameObject startpanel;

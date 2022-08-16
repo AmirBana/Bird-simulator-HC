@@ -64,6 +64,7 @@ public class Humans : MonoBehaviour
             navMesh.ResetPath();
         }
     }
+
     void NavMeshFollow()
     {
         //animator.SetTrigger("Finish");

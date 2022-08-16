@@ -20,8 +20,10 @@ public class Obstacle : MonoBehaviour
         print("obstacle collier:"+other.name);
         if(other.gameObject.CompareTag("Player"))
         {
-            print("Game Over");
-            GameManager.Instance.gameOver = true;
+            other.gameObject.GetComponent<PlayerController>().TakeDamage();
+            GameManager.Instance.health -= 1;
+            print("Health: "+GameManager.Instance.health);
+            if(GameManager.Instance.health== 0) GameManager.Instance.gameOver = true;
         }
     }
 }
