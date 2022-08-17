@@ -9,6 +9,7 @@ TagManager:
   - Mess
   - Poopi
   - Obstacle
+  - Coin
   layers:
   - Default
   - TransparentFX

@@ -18,56 +18,44 @@ public class GameManager : MonoBehaviour
     }
     //main script
     [Header("Game Elements")]
-    public int ammo;
-    public int maxAmmo;
-    public int initAmmo;
     public int score;
+    public int coin;
     [SerializeField] int scoreAmount;
     public int health;
     [HideInInspector]public bool gameStart, gamefinish, gameOver;
+
     [Header("UI Elements")]
-    [SerializeField] GameObject startpanel;
-    [SerializeField] GameObject inGamePanel;
-    [SerializeField] GameObject lostPanel;
-    [SerializeField] GameObject winPanel;
-    [SerializeField] Slider ammoSlider;
-    [SerializeField] TextMeshProUGUI ammoSize;
+     public GameObject startpanel;
+     public GameObject inGamePanel;
+     public GameObject lostPanel;
+     public GameObject winPanel;
+     public Image[] hearts;
+    [SerializeField] TextMeshProUGUI coinSize;
     [SerializeField] TextMeshProUGUI ScoreTxt;
     [SerializeField] TextMeshProUGUI finalScore;
     void Start()
     {
         GameAnalytics.Initialize();
-        ammo = 0;
+        coin = 0;
         gameOver = false;
         gamefinish = false;
         gameStart = false;
-        ammoSlider.minValue = 0;
         score = 0;
-        ammoSlider.maxValue = maxAmmo;
-        Ammo(initAmmo);
+        Coin(0);
         startpanel.SetActive(true);
         inGamePanel.SetActive(false);
         lostPanel.SetActive(false);
         winPanel.SetActive(false);
         print(SceneManager.sceneCount-1 + " :now hole: " + (SceneManager.GetActiveScene().buildIndex));
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Coin(int amount)
     {
+        coin += amount;
+        coinSize.text = coin.ToString();
     }
-    public void StartGame()
+    public void Heart()
     {
-        gameStart = true;
-        startpanel.SetActive(false);
-        inGamePanel.SetActive(true);
-        
-    }
-    public void Ammo(int amount)
-    {
-        ammo += amount;
-        ammoSlider.value = ammo;
-        ammoSize.text = ammo.ToString();
+        hearts[health].color = new Color32(255, 255, 255, 95);
     }
     public void GameOver()
     {
@@ -80,22 +68,18 @@ public class GameManager : MonoBehaviour
         winPanel.SetActive(true);
         finalScore.text = score.ToString();
     }
-    public void Lost()
+    public void LostGame()
     {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, "FailLevel", SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void OnScoreChange(int kind)
     {
         score += (scoreAmount * kind);
         ScoreTxt.text = score.ToString();
     }
-    public void Win()
+    public void WinGame()
     {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "CompleteLevel", SceneManager.GetActiveScene().buildIndex + 1);
-        if (0 == (SceneManager.GetActiveScene().buildIndex))
-            SceneManager.LoadScene(0);
-        else
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //todo add coin calc
     }
 }

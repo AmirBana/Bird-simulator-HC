@@ -60,6 +60,14 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            GameManager.Instance.Coin(1);
+            Destroy(other.gameObject);
+        }
+    }
     IEnumerator StartFly()
     {
         while (onLand == true)
@@ -107,7 +115,6 @@ public class PlayerController : MonoBehaviour
         pathFollow.speed = damagedSpeed;
         yield return new WaitForSeconds(2f);
         pathFollow.speed = normalSpeed;
-        Func<int> a = () => 2;
     }
     void DeathBird()
     {
@@ -211,11 +218,10 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray,out hit,rayHeight))
         {
-            if (hit.collider.tag=="Human" && GameManager.Instance.ammo >= poopSize)
+            if (hit.collider.tag=="Human")
             {
                 var target1 = hit.collider.transform;
                 hit.collider.gameObject.tag = "PoopHuman";
-                GameManager.Instance.Ammo(-poopSize);
                 Pooping();
                 //print("hit:"+hit.collider.name);
             }

@@ -46,7 +46,7 @@ public class GateController : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            GameManager.Instance.Ammo(bonus);
+            //GameManager.Instance.Ammo(bonus);
             Destroy(transform.parent.gameObject);
         }
     }

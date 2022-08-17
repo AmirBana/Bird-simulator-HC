@@ -46,9 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammo: 0
   maxAmmo: 20
-  initAmmo: 5
+  initAmmo: 500
   score: 0
-  scoreAmount: 0
+  scoreAmount: 5
+  health: 3
   gameStart: 0
   gamefinish: 0
   gameOver: 0
@@ -59,3 +60,4 @@ MonoBehaviour:
   ammoSlider: {fileID: 0}
   ammoSize: {fileID: 0}
   ScoreTxt: {fileID: 0}
+  finalScore: {fileID: 0}

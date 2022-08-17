@@ -25,10 +25,10 @@ public class Obstacle : MonoBehaviour
                 isTouched = true;
                 other.gameObject.GetComponent<PlayerController>().TakeDamage();
                 GameManager.Instance.health -= 1;
-                print("Health: " + GameManager.Instance.health);
+                GameManager.Instance.Heart();
+                print("Health: " + GameManager.Instance.health);//todo remove
                 if (GameManager.Instance.health == 0) GameManager.Instance.gameOver = true;
             }
         }
-        print("health");
     }
 }
