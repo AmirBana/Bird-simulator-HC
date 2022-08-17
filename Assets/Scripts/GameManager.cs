@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public int score;
     [SerializeField] int scoreAmount;
     public int health;
-
     [HideInInspector]public bool gameStart, gamefinish, gameOver;
     [Header("UI Elements")]
     [SerializeField] GameObject startpanel;
@@ -56,7 +55,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     public void StartGame()
     {

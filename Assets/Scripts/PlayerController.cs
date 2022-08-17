@@ -39,9 +39,13 @@ public class PlayerController : MonoBehaviour
         {
             if (GameManager.Instance.gameStart && !GameManager.Instance.gameOver)
             {
-                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                
                 //SwipeControl();
                 Swipe2();
+            }
+            if(GameManager.Instance.gamefinish)
+            {
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
             }
             TargetDetect();
             if (transform.position.z >= finishPos.position.z)
@@ -75,8 +79,28 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         animator.SetTrigger("Dmg");
+        PositionChangeOnDmg();
         particle2.Play();
         StartCoroutine(DamageEffect());
+    }
+    void PositionChangeOnDmg()
+    {
+        float xPos = localMovement ?  transform.localPosition.x : transform.position.x;
+        Vector3 newPos = localMovement ? transform.localPosition : transform.position;
+        if (xPos >= 2f)
+            newPos.x = 0;
+        else if (xPos <= -2f)
+            newPos.x = 0;
+        else
+        {
+            int rand = UnityEngine.Random.Range(0, 2);
+            if (rand == 0) newPos.x = -2.5f;
+            else if (rand == 1) newPos.x = 2.5f;
+        }
+        if (localMovement)
+            LeanTween.moveLocal(gameObject, newPos, 0.1f);
+        else
+            LeanTween.move(gameObject, newPos, 0.1f);
     }
     IEnumerator DamageEffect()
     {
