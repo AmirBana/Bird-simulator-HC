@@ -44,10 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a8a32ed0f24124aa85d40ee2ad98fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 0
-  maxAmmo: 20
-  initAmmo: 500
   score: 0
+  coin: 0
   scoreAmount: 5
   health: 3
   gameStart: 0
@@ -57,7 +55,10 @@ MonoBehaviour:
   inGamePanel: {fileID: 0}
   lostPanel: {fileID: 0}
   winPanel: {fileID: 0}
-  ammoSlider: {fileID: 0}
-  ammoSize: {fileID: 0}
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  coinSize: {fileID: 0}
   ScoreTxt: {fileID: 0}
   finalScore: {fileID: 0}
