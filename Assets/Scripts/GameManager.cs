@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+   
     //main script
     [Header("Game Elements")]
     public int score;
@@ -82,4 +83,10 @@ public class GameManager : MonoBehaviour
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "CompleteLevel", SceneManager.GetActiveScene().buildIndex + 1);
         //todo add coin calc
     }
+}
+public enum Side
+{
+    left,
+    right,
+    center
 }

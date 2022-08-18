@@ -13,8 +13,10 @@ public class Humans : MonoBehaviour
     Transform finishPos; 
     GameObject player;
     public State state;
+    public Side side;
     [SerializeField] float xMin, xMax; 
     public float offset;
+    private float groundSideDivider;
     bool isMessed;
     int dir;
     [SerializeField] float speed;
@@ -24,6 +26,7 @@ public class Humans : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        groundSideDivider = (5 / 3);
         navMesh = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         finishPos = GameObject.FindWithTag("Finish").transform;
@@ -63,8 +66,8 @@ public class Humans : MonoBehaviour
             animator.SetTrigger("Finish");
             navMesh.ResetPath();
         }
+        SideDesider();
     }
-
     void NavMeshFollow()
     {
         //animator.SetTrigger("Finish");
@@ -80,6 +83,12 @@ public class Humans : MonoBehaviour
             isMessed=true;
             Stopped(other);
         }
+    }
+    private void SideDesider()
+    {
+        if (transform.localPosition.x < -groundSideDivider) side = Side.left;
+        else if(transform.localPosition.x >= -groundSideDivider && transform.localPosition.x < groundSideDivider) side = Side.center;
+        else if(transform.localPosition.x >= groundSideDivider) side = Side.right;
     }
     void Stopped(Collider other)
     {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
+    public Side side;
     public float xMin, xMax, yMin, yMax;
     private bool onLand;
     public float speed;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
             {
                 DeathBird();
             }
+            SideDecider();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -170,6 +172,12 @@ public class PlayerController : MonoBehaviour
             if (curTouch.phase == TouchPhase.Ended) isMoved = false;
         }
     }
+    void SideDecider()
+    {
+        if (transform.localPosition.x <= -2) side = Side.left;
+        else if(transform.localPosition.x < 2) side = Side.center;
+        else if(transform.localPosition.x >= 2) side = Side.right;
+    }
     void SwipeControl()
     {
         if (Input.touchCount > 0)
@@ -222,16 +230,24 @@ public class PlayerController : MonoBehaviour
             {
                 var target1 = hit.collider.transform;
                 hit.collider.gameObject.tag = "PoopHuman";
-                Pooping();
+                Side hitSide = hit.collider.gameObject.GetComponent<HumanSide>().side;
+                GameObject aim = hit.collider.gameObject.GetComponent<HumanSide>().mess;
+                print(target1.name);
+                if (hitSide == side) Pooping(true, aim);
+                else Pooping(false,aim);
                 //print("hit:"+hit.collider.name);
             }
         }
     }
-    void Pooping()
+    public void Pooping(bool hit,GameObject target)
     {
         animator.SetTrigger("poop");
         Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         GameObject obj = Instantiate(poopObj, spawnPos, poopObj.transform.rotation);
+        PoopControl objScript = obj.GetComponent<PoopControl>();
+        objScript.hitted = hit;
+        objScript.target = target;
+
         //animator.SetBool("turn left", false);
     }
    
