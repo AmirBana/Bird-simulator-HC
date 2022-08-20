@@ -19,7 +19,9 @@ namespace PathCreation.Examples
             {
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;
-                transform.position = pathCreator.path.GetPoint(sPoint);
+                distanceTravelled = sPoint;
+                transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
+                transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled);
                 //transform.rotation = pathCreator.path.GetRotation(0.5f);
             }
         }
@@ -30,6 +32,7 @@ namespace PathCreation.Examples
             {
                 if (pathCreator != null)
                 {
+                   
                     distanceTravelled += speed * Time.deltaTime;
                     transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                     transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
@@ -40,7 +43,7 @@ namespace PathCreation.Examples
 
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path
         // is as close as possible to its position on the old path
-        void OnPathChanged() {
+       void OnPathChanged() {
             distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
         }
     }

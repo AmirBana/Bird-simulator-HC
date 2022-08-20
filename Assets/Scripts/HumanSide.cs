@@ -12,7 +12,6 @@ public class HumanSide : MonoBehaviour
     {
         mess = human.mess;
     }
-
     // Update is called once per frame
     void Update()
     {

@@ -7,7 +7,7 @@ public class Humans : MonoBehaviour
     public enum State
     {
         move,
-        stationary
+        stationary,
     }
     public GameObject mess;
     Transform finishPos; 

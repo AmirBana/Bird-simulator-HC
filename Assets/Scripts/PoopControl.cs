@@ -16,6 +16,7 @@ public class PoopControl : MonoBehaviour
         else
         {
             time = 0.15f;
+            speed *= 2;
         }
     }
 
@@ -28,7 +29,7 @@ public class PoopControl : MonoBehaviour
     {
         if(hitted)
         {
-            LeanTween.move(gameObject, target.transform.position, time).setEaseLinear();
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         }
         else
         {
@@ -36,7 +37,7 @@ public class PoopControl : MonoBehaviour
             pos.z -= 1f;
             pos.x -= 1f;
             pos.y = -3f;
-            LeanTween.move(gameObject, pos, time * 3);
+            transform.position = Vector3.MoveTowards(transform.position, pos, speed * Time.deltaTime);
         }
     }
 }
