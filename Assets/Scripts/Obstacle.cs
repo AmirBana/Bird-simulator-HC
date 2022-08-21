@@ -22,6 +22,7 @@ public class Obstacle : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                StartCoroutine(ResetTrigger(other.gameObject));
                 isTouched = true;
                 other.gameObject.GetComponent<PlayerController>().TakeDamage();
                 GameManager.Instance.health -= 1;
@@ -30,5 +31,11 @@ public class Obstacle : MonoBehaviour
                 if (GameManager.Instance.health == 0) GameManager.Instance.gameOver = true;
             }
         }
+    }
+    IEnumerator ResetTrigger(GameObject player)
+    {
+        player.GetComponent<SphereCollider>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        player.GetComponent<SphereCollider>().enabled = true;
     }
 }
