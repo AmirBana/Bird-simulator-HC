@@ -6,7 +6,7 @@ public class GenerateLevel : MonoBehaviour
 {
     [Header("Game Objects")]
     public GameObject obstacle;
-    public GameObject human;
+    public GameObject[] human;
     public GameObject coin;
     [Space]
     PathCreator pathCreator;
@@ -28,7 +28,7 @@ public class GenerateLevel : MonoBehaviour
         for (float i = starter; i < (points - endPoint); i += coinDistance)
         {
             width = allWidth[Random.Range(0, allWidth.Length)];
-            gameObjectIndex = Random.Range(0, 2);
+            gameObjectIndex = Random.Range(0, 4);
             Vector3 pos = pathCreator.path.GetPointAtDistance(i,endOfPathInstruction);
             Quaternion rot = pathCreator.path.GetRotationAtDistance(i,endOfPathInstruction);
             if ((i - starter) % distance != 0) createdObj = Instantiate(coin, pos,rot);
@@ -38,7 +38,7 @@ public class GenerateLevel : MonoBehaviour
                 {
                     createdObj = Instantiate(obstacle, pos, rot);
                 }
-                else if (gameObjectIndex == 1) createdObj = Instantiate(human, pos, rot);
+                else if (gameObjectIndex != 0) createdObj = Instantiate(human[Random.Range(0,human.Length)], pos, rot);
             }
             if (createdObj.GetComponentsInChildren<Transform>()[0].name.Contains("Danger1"))
                 SetDanger1();

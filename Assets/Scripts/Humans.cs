@@ -26,6 +26,9 @@ public class Humans : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int stateIndex = Random.Range(0, 2);
+        if(stateIndex == 0) state = State.move;
+        else if(stateIndex == 1) state = State.stationary;
         groundSideDivider = (5 / 3);
         navMesh = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
@@ -110,7 +113,7 @@ public class Humans : MonoBehaviour
                 transform.Rotate(Vector3.up * 180);
             dir = -1;
         }
-        transform.Translate(Vector3.right * dir * speed * Time.deltaTime,Space.World);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime,Space.Self);
     }
     
 }

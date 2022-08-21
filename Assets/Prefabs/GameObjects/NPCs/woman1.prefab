@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mess: {fileID: 2846509598577918982}
-  state: 0
+  state: 1
   side: 0
   xMin: -1.7
   xMax: 2.14
