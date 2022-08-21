@@ -228,6 +228,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.tag=="Human")
             {
+                print(hit.collider.name);
                 var target1 = hit.collider.transform;
                 hit.collider.gameObject.tag = "PoopHuman";
                 Side hitSide = hit.collider.gameObject.GetComponent<HumanSide>().side;

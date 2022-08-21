@@ -16,6 +16,8 @@ public class GenerateLevel : MonoBehaviour
     public EndOfPathInstruction endOfPathInstruction;
     public float distance;
     public float coinDistance;
+    [Range(2,100)][Tooltip("humanCompareToObstacle")]public int humanCompareToObstacle=2;
+    public int minChoiceHuman,maxChoiceHuman;
     public float starter;
     public float endPoint;
     GameObject createdObj;
@@ -28,7 +30,7 @@ public class GenerateLevel : MonoBehaviour
         for (float i = starter; i < (points - endPoint); i += coinDistance)
         {
             width = allWidth[Random.Range(0, allWidth.Length)];
-            gameObjectIndex = Random.Range(0, 4);
+            gameObjectIndex = Random.Range(0, humanCompareToObstacle);
             Vector3 pos = pathCreator.path.GetPointAtDistance(i,endOfPathInstruction);
             Quaternion rot = pathCreator.path.GetRotationAtDistance(i,endOfPathInstruction);
             if ((i - starter) % distance != 0) createdObj = Instantiate(coin, pos,rot);
@@ -38,23 +40,29 @@ public class GenerateLevel : MonoBehaviour
                 {
                     createdObj = Instantiate(obstacle, pos, rot);
                 }
-                else if (gameObjectIndex != 0) createdObj = Instantiate(human[Random.Range(0,human.Length)], pos, rot);
+                else if (gameObjectIndex != 0)
+                {
+                    int choices = Random.Range(minChoiceHuman, maxChoiceHuman);
+                    for(int j = 0; j<choices;j++)
+                    {
+                        Vector3 pos2 = pathCreator.path.GetPointAtDistance(i+j+1, endOfPathInstruction);
+                        Quaternion rot2 = pathCreator.path.GetRotationAtDistance(i+j+1, endOfPathInstruction);
+                        createdObj = Instantiate(human[Random.Range(0, human.Length)], pos2, rot2);
+                        SetWidth();
+                    }
+                    createdObj = Instantiate(human[Random.Range(0, human.Length)], pos, rot);
+
+                }
             }
-            if (createdObj.GetComponentsInChildren<Transform>()[0].name.Contains("Danger1"))
-                SetDanger1();
-            else
+            if (!createdObj.GetComponentsInChildren<Transform>()[0].name.Contains("Danger1"))
                 SetWidth();
         }
     }
     void SetWidth()
     {
-        print(createdObj.GetComponentsInChildren<Transform>()[1].name);
+        width = allWidth[Random.Range(0, allWidth.Length)];
         Transform obj = createdObj.GetComponentsInChildren<Transform>()[1];
         Vector3 widthPos = new Vector3(width,obj.localPosition.y, obj.localPosition.z);
         obj.localPosition = widthPos;
-    }
-    void SetDanger1()
-    {
-
     }
 }
