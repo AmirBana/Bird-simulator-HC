@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         onLand = true;
         pathFollow.speed = normalSpeed;
         animator = GetComponentsInChildren < Animator >()[0];
+        animator.SetFloat("speed", 0.5f);
         finishPos = GameObject.FindWithTag("Finish").transform;
         StartCoroutine(StartFly());
     }
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("StartFly");
                 yield return new WaitForSeconds(1f);
                 onLand = false;
+                animator.SetFloat("speed",1f);
             }
            else
                 yield return null;

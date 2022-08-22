@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5116f1b20e8cf4da6da8f4181e425f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transMat: {fileID: 2100000, guid: 4fc8f0a4742a7504094eb3e45a0429c7, type: 2}
 --- !u!1 &8247366758772906353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8487167654232718067, guid: b838bf00132d5a040a6436f1eb633298,
@@ -325,3 +326,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5116f1b20e8cf4da6da8f4181e425f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transMat: {fileID: 2100000, guid: 4fc8f0a4742a7504094eb3e45a0429c7, type: 2}

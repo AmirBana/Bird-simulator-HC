@@ -66,7 +66,12 @@ public class Humans : MonoBehaviour
         }
         if (transform.position.z >= finishPos.position.z || GameManager.Instance.gamefinish)
         {
-            animator.SetTrigger("Finish");
+            
+            int finihsKind = Random.Range(1,3);
+            if (finihsKind == 1)
+                animator.SetInteger("Finish", 1);
+            else if (finihsKind == 2)
+                animator.SetInteger("Finish", 2);
             navMesh.ResetPath();
         }
         SideDesider();
@@ -74,7 +79,8 @@ public class Humans : MonoBehaviour
     void NavMeshFollow()
     {
         //animator.SetTrigger("Finish");
-        navMesh.destination = player.transform.position;
+        if(GameManager.Instance.gamefinish == false)
+         navMesh.destination = player.transform.position;
     }
     private void OnTriggerEnter(Collider other)
     {

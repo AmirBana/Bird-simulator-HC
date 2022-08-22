@@ -21,6 +21,7 @@ public class PoopOnHuman : MonoBehaviour
     {
         if(GameManager.Instance != null)
         {
+            if(GameManager.Instance.gameStart)
             GameManager.Instance.OnScoreChange(1);
         }
     }

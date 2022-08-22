@@ -20,9 +20,13 @@ public class UIManager : MonoBehaviour
     public void Win()
     {
         GameManager.Instance.WinGame();
-        if (3 == (SceneManager.GetActiveScene().buildIndex))
-            SceneManager.LoadScene(0);
+        if (SceneManager.sceneCountInBuildSettings-1 == (SceneManager.GetActiveScene().buildIndex))
+        {
+            SceneManager.LoadScene(1);
+        }
         else
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }

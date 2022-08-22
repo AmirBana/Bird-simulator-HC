@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/StartScene.unity
+    guid: 4a8dee6249f89fd4faa97514455acca7
+  - enabled: 1
     path: Assets/_Scenes/Level 1-pg.unity
     guid: bc3d92d646d95cc4bb17103ca410ac0b
+  - enabled: 1
+    path: Assets/_Scenes/level 2-pg.unity
+    guid: 082f1ce631718594fad706c9e284a683
+  - enabled: 1
+    path: Assets/_Scenes/Level 3-pg.unity
+    guid: d74ca8fd215c9d0408a0d62548c802da
+  - enabled: 1
+    path: Assets/_Scenes/Level 4-pg.unity
+    guid: d9ae93c3e4d9dda4799d24b93c8ddb9c
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 0a3877770ff66c846a27f60232b1b1e4,
       type: 2}

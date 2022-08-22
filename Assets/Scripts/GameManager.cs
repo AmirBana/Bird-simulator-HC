@@ -6,23 +6,27 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using GameAnalyticsSDK;
+using System.IO;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
             Instance = this;
         else
-            Destroy(gameObject);
+            Destroy(this.gameObject);
     }
    
     //main script
     [Header("Game Elements")]
     public int score;
     public int coin;
+    public static int buildIndex;
+    public static int finalCoin;
     [SerializeField] int scoreAmount;
     public int health;
+    SaveData data;
     [HideInInspector]public bool gameStart, gamefinish, gameOver;
 
     [Header("UI Elements")]
@@ -36,8 +40,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI finalScore;
     void Start()
     {
+        data = new SaveData();
+        LoadGame();
         GameAnalytics.Initialize();
         coin = 0;
+        finalCoin = data.coin;
         gameOver = false;
         gamefinish = false;
         gameStart = false;
@@ -47,7 +54,9 @@ public class GameManager : MonoBehaviour
         inGamePanel.SetActive(false);
         lostPanel.SetActive(false);
         winPanel.SetActive(false);
-        print(SceneManager.sceneCount-1 + " :now hole: " + (SceneManager.GetActiveScene().buildIndex));
+        print("final coins:" + finalCoin);
+        print(SceneManager.sceneCountInBuildSettings - 1 + " :now hole: " + (SceneManager.GetActiveScene().buildIndex));//todo remove
+        print(Application.persistentDataPath);
     }
     public void Coin(int amount)
     {
@@ -68,6 +77,8 @@ public class GameManager : MonoBehaviour
         inGamePanel.SetActive(false);
         winPanel.SetActive(true);
         finalScore.text = score.ToString();
+        finalCoin += (coin*(score));
+        SaveGame();
     }
     public void LostGame()
     {
@@ -82,6 +93,27 @@ public class GameManager : MonoBehaviour
     {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "CompleteLevel", SceneManager.GetActiveScene().buildIndex + 1);
         //todo add coin calc
+    }
+    void LoadGame()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            data = JsonUtility.FromJson<SaveData>(json);
+            print(data);
+        }
+    }
+    public void SaveGame()
+    {
+        data = new SaveData();
+        data.coin += finalCoin;
+        if (SceneManager.sceneCountInBuildSettings-1 == SceneManager.GetActiveScene().buildIndex)
+            data.sceneIndex = 1;
+        else
+            data.sceneIndex = SceneManager.GetActiveScene().buildIndex+1;
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json",json);
     }
 }
 public enum Side
