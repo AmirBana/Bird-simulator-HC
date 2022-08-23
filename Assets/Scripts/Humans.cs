@@ -66,20 +66,24 @@ public class Humans : MonoBehaviour
         }
         if (transform.position.z >= finishPos.position.z || GameManager.Instance.gamefinish)
         {
-            
-            int finihsKind = Random.Range(1,3);
-            if (finihsKind == 1)
-                animator.SetInteger("Finish", 1);
-            else if (finihsKind == 2)
-                animator.SetInteger("Finish", 2);
-            navMesh.ResetPath();
+            float finishTime = Random.Range(0.5f, 2f);
+            Invoke("FinishPath", finishTime);
         }
         SideDesider();
+    }
+    void FinishPath()
+    {
+        int finihsKind = Random.Range(1, 4);
+        if (finihsKind == 1)
+            animator.SetInteger("Finish", 1);
+        else if (finihsKind == 2)
+            animator.SetInteger("Finish", 2);
+        navMesh.ResetPath();
     }
     void NavMeshFollow()
     {
         //animator.SetTrigger("Finish");
-        if(GameManager.Instance.gamefinish == false)
+        //if(GameManager.Instance.gamefinish == false)
          navMesh.destination = player.transform.position;
     }
     private void OnTriggerEnter(Collider other)

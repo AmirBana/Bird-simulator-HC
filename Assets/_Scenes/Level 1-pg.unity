@@ -7045,10 +7045,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8009203908529975972, guid: 7f1da6a6051b43e4e94e6cb629aaa5d2,
+        type: 3}
+      propertyPath: normalSpeed
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8009203909772443727, guid: 7f1da6a6051b43e4e94e6cb629aaa5d2,
         type: 3}
       propertyPath: m_Name
       value: PlayerMove
+      objectReference: {fileID: 0}
+    - target: {fileID: 8009203909772443760, guid: 7f1da6a6051b43e4e94e6cb629aaa5d2,
+        type: 3}
+      propertyPath: speed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8009203909772443760, guid: 7f1da6a6051b43e4e94e6cb629aaa5d2,
         type: 3}
