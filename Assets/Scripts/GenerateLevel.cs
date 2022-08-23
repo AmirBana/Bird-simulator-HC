@@ -5,7 +5,7 @@ using PathCreation;
 public class GenerateLevel : MonoBehaviour
 {
     [Header("Game Objects")]
-    public GameObject obstacle;
+    public GameObject[] obstacle;
     public GameObject[] human;
     public GameObject coin;
     [Space]
@@ -38,7 +38,8 @@ public class GenerateLevel : MonoBehaviour
             {
                 if (gameObjectIndex == 0)
                 {
-                    createdObj = Instantiate(obstacle, pos, rot);
+                    int obsacleKind = Random.Range(0,obstacle.Length);
+                    createdObj = Instantiate(obstacle[obsacleKind], pos, rot);
                 }
                 else if (gameObjectIndex != 0)
                 {
