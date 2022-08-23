@@ -6,17 +6,15 @@ public class PoopControl : MonoBehaviour
     [SerializeField] GameObject effect;
     public bool hitted;
     public GameObject target;
-    float time;
     void Start()
     {
         if(transform.position.y > 4)
-        {
-            time = 0.35f;
+        { 
+            speed *= 2;
         }
         else
         {
-            time = 0.15f;
-            speed *= 2;
+        
         }
     }
 
