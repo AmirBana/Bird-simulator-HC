@@ -128,9 +128,12 @@ public class PlayerController : MonoBehaviour
     }
     void WinBird()
     {
+        if (!gameOvered)
+        {
+            GameManager.Instance.GameWin();
+            speed = 50f;
+        }
         gameOvered = true;
-        GameManager.Instance.GameWin();
-        speed = 50f;
     }
     void GameOverActive()
     {

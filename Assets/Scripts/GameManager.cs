@@ -23,9 +23,11 @@ public class GameManager : MonoBehaviour
     public int score;
     public int coin;
     public static int buildIndex;
-    public static int finalCoin;
+    public int finalCoin=0;
+    public bool isReset = false;
     [SerializeField] int scoreAmount;
     public int health;
+    public int currentLevel = 0;
     SaveData data;
     [HideInInspector]public bool gameStart, gamefinish, gameOver;
 
@@ -34,10 +36,14 @@ public class GameManager : MonoBehaviour
      public GameObject inGamePanel;
      public GameObject lostPanel;
      public GameObject winPanel;
+     public GameObject pausePanel;
+     public GameObject resetPanel;
      public Image[] hearts;
-    [SerializeField] TextMeshProUGUI coinSize;
-    [SerializeField] TextMeshProUGUI ScoreTxt;
-    [SerializeField] TextMeshProUGUI finalScore;
+     [SerializeField] TextMeshProUGUI coinSize;
+     [SerializeField] TextMeshProUGUI ScoreTxt;
+     [SerializeField] TextMeshProUGUI finalScore;
+     [SerializeField] TextMeshProUGUI homeCoins;
+     [SerializeField] TextMeshProUGUI homeCurrentLevel;
     void Start()
     {
         data = new SaveData();
@@ -45,12 +51,25 @@ public class GameManager : MonoBehaviour
         GameAnalytics.Initialize();
         coin = 0;
         finalCoin = data.coin;
+        currentLevel = data.currentLevel;
+        homeCoins.text = finalCoin.ToString();
+        homeCurrentLevel.text = currentLevel.ToString();
         gameOver = false;
         gamefinish = false;
         gameStart = false;
         score = 0;
         Coin(0);
-        startpanel.SetActive(true);
+        if (!PlayerPrefs.HasKey("isReset") || PlayerPrefs.GetInt("isReset")==0)
+        {
+            startpanel.SetActive(true);
+            resetPanel.SetActive(false);
+        }
+        else
+        {
+            startpanel.SetActive(false);
+            resetPanel.SetActive(true);
+            PlayerPrefs.SetInt("isReset", 0);
+        }
         inGamePanel.SetActive(false);
         lostPanel.SetActive(false);
         winPanel.SetActive(false);
@@ -77,7 +96,8 @@ public class GameManager : MonoBehaviour
         inGamePanel.SetActive(false);
         winPanel.SetActive(true);
         finalScore.text = score.ToString();
-        finalCoin += (coin*(score));
+        finalCoin += (coin+score);
+        print("final coin after finish:" + finalCoin);
         SaveGame();
     }
     public void LostGame()
@@ -107,7 +127,8 @@ public class GameManager : MonoBehaviour
     public void SaveGame()
     {
         data = new SaveData();
-        data.coin += finalCoin;
+        data.coin = finalCoin;
+        data.currentLevel = currentLevel + 1;
         if (SceneManager.sceneCountInBuildSettings-1 == SceneManager.GetActiveScene().buildIndex)
             data.sceneIndex = 1;
         else
