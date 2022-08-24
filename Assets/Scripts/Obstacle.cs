@@ -6,6 +6,8 @@ public class Obstacle : MonoBehaviour
 {
     bool isTouched;
     public Material transMat;
+
+    public float fadeDistance;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,7 @@ public class Obstacle : MonoBehaviour
     {
         var camera = Camera.main.transform ;
         float distance = Mathf.Abs(camera.position.z - transform.parent.position.z);
-        if (distance < 4f)
+        if (distance < fadeDistance)
             GetComponent<MeshRenderer>().material = transMat;
     }
 }
