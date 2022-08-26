@@ -5,24 +5,26 @@ using UnityEngine;
 public class PoopOnHuman : MonoBehaviour
 {
     [SerializeField] GameObject body;
-    Vector3 offset;
-    GameManager manager;
-    // Start is called before the first frame update
+    Vector3 posOffset;
+    Vector3 rotOffset;
+    private void OnEnable()
+    {
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.gameStart)
+                GameManager.Instance.OnScoreChange(1);
+        }
+    }
     void Start()
     {
-        offset = transform.position - body.transform.position;
+        posOffset = transform.position - body.transform.position;
+        rotOffset = transform.eulerAngles - body.transform.eulerAngles;
     }
     // Update is called once per frame
     void Update()
     {
-        transform.position = body.transform.position + offset;
+        transform.position = body.transform.position + posOffset;
+        transform.eulerAngles = body.transform.eulerAngles + rotOffset;
     }
-    private void OnEnable()
-    {
-        if(GameManager.Instance != null)
-        {
-            if(GameManager.Instance.gameStart)
-            GameManager.Instance.OnScoreChange(1);
-        }
-    }
+   
 }

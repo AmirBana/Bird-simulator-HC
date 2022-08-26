@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
         inGamePanel.SetActive(false);
         lostPanel.SetActive(false);
         winPanel.SetActive(false);
+        pausePanel.SetActive(false);
         print("final coins:" + finalCoin);
         print(SceneManager.sceneCountInBuildSettings - 1 + " :now hole: " + (SceneManager.GetActiveScene().buildIndex));//todo remove
         print(Application.persistentDataPath);

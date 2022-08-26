@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     public Side side;
@@ -123,6 +124,10 @@ public class PlayerController : MonoBehaviour
     void DeathBird()
     {
         particle.Play();
+        float fallTime = 1f;
+        if (transform.localPosition.y > 3.5f) fallTime = 2f;
+        transform.DOLocalMoveY(0.2f, fallTime).SetEase(Ease.InSine);
+        animator.SetTrigger("Death");
         gameOvered = true;
         Invoke("GameOverActive", 1f);
     }
@@ -138,6 +143,7 @@ public class PlayerController : MonoBehaviour
     void GameOverActive()
     {
         GameManager.Instance.GameOver();
+      //  gameObject.SetActive(false);
     }
     void Swipe2()
     {
@@ -163,13 +169,13 @@ public class PlayerController : MonoBehaviour
                     }
                     if (localMovement)
                     {
-                      LeanTween.moveLocal( gameObject,newPos,0.2f).setEaseInOutCubic();
+                      LeanTween.moveLocal( gameObject,newPos,0.4f).setEaseOutSine();
                         if (newX > 0) animator.SetTrigger("TurnRight");
                         else if (newX < 0) animator.SetTrigger("TurnLeft");
                     }
                     else
                     {
-                        LeanTween.move(gameObject, newPos, 0.1f).setEaseInOutCubic();
+                        LeanTween.move(gameObject, newPos, 0.4f).setEaseOutSine();
                     }
                     isMoved = true;
                 }

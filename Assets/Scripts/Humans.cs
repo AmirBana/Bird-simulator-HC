@@ -65,16 +65,20 @@ public class Humans : MonoBehaviour
         }
         if(isMessed)
         {
-            Invoke("NavMeshFollow", 2f);
+            Invoke("NavMeshFollow", 1.5f);
         }
-        if (transform.position.z >= finishPos.position.z || GameManager.Instance.gamefinish )
+        if (transform.position.z >= finishPos.position.z-5 && GameManager.Instance.gamefinish )
         {
             float finishTime = Random.Range(0.5f, 2f);
+            navMesh.speed = 0;
+            mess.SetActive(false);
             Invoke("FinishPath", finishTime);
         }
         else if (isMessed && GameManager.Instance.gameOver)
         {
             float walkTime = Random.Range(0.5f, 2f);
+            navMesh.speed = 0;
+            mess.SetActive(false);
             Invoke("WalkBackDeathBird",walkTime);
         }
         SideDesider();
@@ -82,17 +86,20 @@ public class Humans : MonoBehaviour
 
     void WalkBackDeathBird()
     {
+
+        navMesh.ResetPath();
         animator.SetTrigger("WalkBack");
-        navMesh.destination = walkPos.position;
+
     }
     void FinishPath()
     {
-        int finihsKind = Random.Range(1, 4);
+        int finihsKind = Random.Range(1, 3);
+ 
+        navMesh.ResetPath();
         if (finihsKind == 1)
             animator.SetInteger("Finish", 1);
         else if (finihsKind == 2)
             animator.SetInteger("Finish", 2);
-        navMesh.ResetPath();
     }
     void NavMeshFollow()
     {
