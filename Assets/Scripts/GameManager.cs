@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
      [SerializeField] private TextMeshProUGUI calculatedCOins, poopedMen;
      [SerializeField] private Slider progressSlider;
      [SerializeField] Image winFillImg;
+     [SerializeField] Image[] stars;
+     [SerializeField] Sprite starEmpty, starFull;
+     [SerializeField] Color32 trophyEmpty, trophyFull;
      void Start()
     {
         data = new SaveData();
@@ -130,20 +133,61 @@ public class GameManager : MonoBehaviour
 
     public void CalculateWinCoins()
     {
-        poopedMen.text = score+"/"+allHumans;
+        poopedMen.text = score + "/" + allHumans;
         float humanPercentGotted = (float)score / allHumans;
-        float easetime = humanPercentGotted * 3f;
+        float easetime = humanPercentGotted * 5f;
         int multiplier = 1;
         if (humanPercentGotted < 0.25f) multiplier = 1;
         else if (humanPercentGotted < 0.5f) multiplier = 2;
         else if (humanPercentGotted < 0.75f) multiplier = 3;
-        else if (humanPercentGotted >= 1f) multiplier = 4;
+        else if (humanPercentGotted < 1f) multiplier = 4;
+        else if (humanPercentGotted == 1) multiplier = 5;
         coin *= multiplier;
-        winFillImg.DOFillAmount(humanPercentGotted, easetime).SetEase(Ease.OutSine).onComplete = () =>
+        var fillWin = winFillImg.DOFillAmount(humanPercentGotted, easetime).SetEase(Ease.OutSine);
+   /*     fillWin.onUpdate = () =>
         {
-            calculatedCOins.text = coin.ToString();
+            if(winFillImg.fillAmount >= 0.25 && stars[0].sprite != starFull)
+            {
+                print(1);
+                stars[0].sprite = starFull;
+            }
+            if(winFillImg.fillAmount >= 0.5 && stars[1].sprite != starFull)
+            {
+                if ( stars[0].sprite == starFull)
+                    stars[1].sprite = starFull;
+            }
+            if(winFillImg.fillAmount != 0.75 && stars[2].sprite != starFull)
+            {
+                if(stars[1].sprite == starFull && stars[0].sprite == starFull)
+                    stars[2].sprite = starFull;
+            }
+            if(winFillImg.fillAmount == 1)
+            {
+                if (stars[1].sprite == starFull && stars[0].sprite == starFull && stars[2].sprite == starFull)
+                    stars[3].color = trophyFull;
+            }
+        };*/
+        fillWin.onComplete = () =>
+        {
+            calculatedCOins.text = '+'+coin.ToString();
+            if (winFillImg.fillAmount >= 0.25)
+            {
+                stars[0].sprite = starFull;
+            }
+            if (winFillImg.fillAmount >= 0.5)
+            {
+                    stars[1].sprite = starFull;
+            }
+            if (winFillImg.fillAmount >= 0.75)
+            {
+                    stars[2].sprite = starFull;
+            }
+            if (winFillImg.fillAmount == 1)
+            {
+                    stars[3].color = trophyFull;
+            }
             calculatedCOins.DOScale(1, 2f).SetEase(Ease.OutBack);
-        };     
+        };
     }
     void LoadGame()
     {
@@ -152,7 +196,6 @@ public class GameManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             data = JsonUtility.FromJson<SaveData>(json);
-            print(data);
         }
     }
     public void SaveGame()
