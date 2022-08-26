@@ -12,11 +12,14 @@ namespace PathCreation.Examples
         float distanceTravelled;
         [Header("My Variables")]
         public int sPoint;
-
-        void Start() 
+        private Transform finishPos;
+        private float finishPoint;
+        void Start()
         {
+            finishPos = GameObject.FindWithTag("Finish").transform;
             if (pathCreator != null)
             {
+                finishPoint = pathCreator.path.GetClosestDistanceAlongPath(finishPos.position);
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;
                 distanceTravelled = sPoint;
@@ -32,10 +35,10 @@ namespace PathCreation.Examples
             {
                 if (pathCreator != null)
                 {
-                   
                     distanceTravelled += speed * Time.deltaTime;
                     transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                     transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+                    GameManager.Instance.LevelProgress(distanceTravelled/finishPoint);
                 }
             }
             

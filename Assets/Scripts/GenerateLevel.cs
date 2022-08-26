@@ -23,6 +23,7 @@ public class GenerateLevel : MonoBehaviour
     GameObject createdObj;
     void Start()
     {
+        GameManager.Instance.allHumans = 0;
         pathCreator = GetComponent<PathCreator>();
         float points = pathCreator.path.length;
         

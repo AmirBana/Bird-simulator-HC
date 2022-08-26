@@ -163,18 +163,18 @@ public class PlayerController : MonoBehaviour
                     }
                     if (localMovement)
                     {
-                      LeanTween.moveLocal( gameObject,newPos,0.1f);
+                      LeanTween.moveLocal( gameObject,newPos,0.2f).setEaseInOutCubic();
                         if (newX > 0) animator.SetTrigger("TurnRight");
                         else if (newX < 0) animator.SetTrigger("TurnLeft");
                     }
                     else
                     {
-                        LeanTween.move(gameObject, newPos, 0.1f);
+                        LeanTween.move(gameObject, newPos, 0.1f).setEaseInOutCubic();
                     }
                     isMoved = true;
                 }
             }
-            if (curTouch.phase == TouchPhase.Ended) isMoved = false;
+          if (curTouch.phase == TouchPhase.Ended) isMoved = false;
         }
     }
     void SideDecider()

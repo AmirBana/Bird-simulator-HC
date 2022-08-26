@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.gameStart = true;
         GameManager.Instance.startpanel.SetActive(false);
+        string x = GameManager.Instance.allHumans.ToString();
+        print("all humans:"+x);
         GameManager.Instance.inGamePanel.SetActive(true);
     }
     public void Reset_StartGame()

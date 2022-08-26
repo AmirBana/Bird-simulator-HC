@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 76dfa14d579b99346b29df1fac8fb531
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Langith
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 73a3b259258eedc4383d6ace74c6b3a5, type: 3}
+  - {fileID: 12800000, guid: 7452890e36934754e9d89045e0a6e968, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

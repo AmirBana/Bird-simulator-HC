@@ -10,7 +10,8 @@ public class Humans : MonoBehaviour
         stationary,
     }
     public GameObject mess;
-    Transform finishPos; 
+    Transform finishPos;
+    Transform walkPos;
     GameObject player;
     public State state;
     public Side side;
@@ -26,6 +27,7 @@ public class Humans : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.allHumans += 1;
         int stateIndex = Random.Range(0, 2);
         if(stateIndex == 0) state = State.move;
         else if(stateIndex == 1) state = State.stationary;
@@ -33,6 +35,7 @@ public class Humans : MonoBehaviour
         navMesh = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         finishPos = GameObject.FindWithTag("Finish").transform;
+        walkPos = GameObject.FindWithTag("Walk").transform;
         animator = GetComponentInChildren<Animator>();
         isMessed = false;
         offset = 2;
@@ -64,12 +67,23 @@ public class Humans : MonoBehaviour
         {
             Invoke("NavMeshFollow", 2f);
         }
-        if (transform.position.z >= finishPos.position.z || GameManager.Instance.gamefinish)
+        if (transform.position.z >= finishPos.position.z || GameManager.Instance.gamefinish )
         {
             float finishTime = Random.Range(0.5f, 2f);
             Invoke("FinishPath", finishTime);
         }
+        else if (isMessed && GameManager.Instance.gameOver)
+        {
+            float walkTime = Random.Range(0.5f, 2f);
+            Invoke("WalkBackDeathBird",walkTime);
+        }
         SideDesider();
+    }
+
+    void WalkBackDeathBird()
+    {
+        animator.SetTrigger("WalkBack");
+        navMesh.destination = walkPos.position;
     }
     void FinishPath()
     {

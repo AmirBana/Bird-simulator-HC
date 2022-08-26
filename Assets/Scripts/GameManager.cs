@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using GameAnalyticsSDK;
 using System.IO;
+using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int scoreAmount;
     public int health;
     public int currentLevel = 0;
+    public int allHumans;
     SaveData data;
     [HideInInspector]public bool gameStart, gamefinish, gameOver;
 
@@ -44,7 +46,12 @@ public class GameManager : MonoBehaviour
      [SerializeField] TextMeshProUGUI finalScore;
      [SerializeField] TextMeshProUGUI homeCoins;
      [SerializeField] TextMeshProUGUI homeCurrentLevel;
-    void Start()
+     [SerializeField] private TextMeshProUGUI thisLevelTxt;
+     [SerializeField] private TextMeshProUGUI nextLevelTxt;
+     [SerializeField] private TextMeshProUGUI calculatedCOins, poopedMen;
+     [SerializeField] private Slider progressSlider;
+     [SerializeField] Image winFillImg;
+     void Start()
     {
         data = new SaveData();
         LoadGame();
@@ -54,6 +61,8 @@ public class GameManager : MonoBehaviour
         currentLevel = data.currentLevel;
         homeCoins.text = finalCoin.ToString();
         homeCurrentLevel.text = currentLevel.ToString();
+        thisLevelTxt.text = currentLevel.ToString();
+        nextLevelTxt.text = (currentLevel+1).ToString();
         gameOver = false;
         gamefinish = false;
         gameStart = false;
@@ -95,9 +104,8 @@ public class GameManager : MonoBehaviour
     {
         inGamePanel.SetActive(false);
         winPanel.SetActive(true);
-        finalScore.text = score.ToString();
-        finalCoin += (coin+score);
-        print("final coin after finish:" + finalCoin);
+        CalculateWinCoins();
+        finalCoin += coin;
         SaveGame();
     }
     public void LostGame()
@@ -113,6 +121,29 @@ public class GameManager : MonoBehaviour
     {
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "CompleteLevel", SceneManager.GetActiveScene().buildIndex + 1);
         //todo add coin calc
+    }
+
+    public void LevelProgress(float amount)
+    {
+        progressSlider.value = amount;
+    }
+
+    public void CalculateWinCoins()
+    {
+        poopedMen.text = score+"/"+allHumans;
+        float humanPercentGotted = (float)score / allHumans;
+        float easetime = humanPercentGotted * 3f;
+        int multiplier = 1;
+        if (humanPercentGotted < 0.25f) multiplier = 1;
+        else if (humanPercentGotted < 0.5f) multiplier = 2;
+        else if (humanPercentGotted < 0.75f) multiplier = 3;
+        else if (humanPercentGotted >= 1f) multiplier = 4;
+        coin *= multiplier;
+        winFillImg.DOFillAmount(humanPercentGotted, easetime).SetEase(Ease.OutSine).onComplete = () =>
+        {
+            calculatedCOins.text = coin.ToString();
+            calculatedCOins.DOScale(1, 2f).SetEase(Ease.OutBack);
+        };     
     }
     void LoadGame()
     {
