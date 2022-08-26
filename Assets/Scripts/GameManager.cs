@@ -183,10 +183,6 @@ public class GameManager : MonoBehaviour
             {
                     stars[2].sprite = starFull;
             }
-            if (winFillImg.fillAmount == 1)
-            {
-                    stars[3].color = trophyFull;
-            }
             calculatedCOins.DOScale(1, 2f).SetEase(Ease.OutBack);
         };
     }
