@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 4192745850909211232}
   - component: {fileID: 3395019130043148391}
   - component: {fileID: 326852372920578251}
+  - component: {fileID: -5775131302173081596}
   m_Layer: 0
   m_Name: Danger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6087705975736441670
 Transform:
@@ -98,6 +99,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5775131302173081596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626678229102291909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23c66ae8d456c9449af468bc656dc13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &557586936722613122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,6 +228,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: barrier2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b838bf00132d5a040a6436f1eb633298,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4431670454091400558, guid: b838bf00132d5a040a6436f1eb633298,
         type: 3}
       propertyPath: m_CastShadows
@@ -225,6 +243,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0fa4bca5fb931344a9127ed80ca1e052, type: 2}
+    - target: {fileID: 7742780737561719692, guid: b838bf00132d5a040a6436f1eb633298,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8424073627695423409, guid: b838bf00132d5a040a6436f1eb633298,
         type: 3}
       propertyPath: m_CastShadows
@@ -235,6 +258,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 60831ae5ebf40cf4894d7c0daaee7ddd, type: 2}
+    - target: {fileID: 8487167654232718067, guid: b838bf00132d5a040a6436f1eb633298,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b838bf00132d5a040a6436f1eb633298, type: 3}
 --- !u!4 &15282250090447977 stripped
@@ -249,20 +277,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 557586936722613122}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &552773406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 827988935236050643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f3e7147cee7c14ab33e6d0bce7e5ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minScale: 2.5
-  highScale: 4
 --- !u!95 &155040511
 Animator:
   serializedVersion: 4
@@ -283,6 +297,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &552773406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827988935236050643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f3e7147cee7c14ab33e6d0bce7e5ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScale: 2.5
+  highScale: 4
 --- !u!1 &7840503427403976718 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7742780737561719692, guid: b838bf00132d5a040a6436f1eb633298,

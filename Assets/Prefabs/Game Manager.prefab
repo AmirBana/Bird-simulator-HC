@@ -46,8 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   coin: 0
-  scoreAmount: 5
+  finalCoin: 0
+  isReset: 0
+  scoreAmount: 1
   health: 3
+  currentLevel: 0
+  allHumans: 0
   gameStart: 0
   gamefinish: 0
   gameOver: 0
@@ -55,6 +59,8 @@ MonoBehaviour:
   inGamePanel: {fileID: 0}
   lostPanel: {fileID: 0}
   winPanel: {fileID: 0}
+  pausePanel: {fileID: 0}
+  resetPanel: {fileID: 0}
   hearts:
   - {fileID: 0}
   - {fileID: 0}
@@ -62,3 +68,24 @@ MonoBehaviour:
   coinSize: {fileID: 0}
   ScoreTxt: {fileID: 0}
   finalScore: {fileID: 0}
+  homeCoins: {fileID: 0}
+  homeCurrentLevel: {fileID: 0}
+  thisLevelTxt: {fileID: 0}
+  nextLevelTxt: {fileID: 0}
+  calculatedCOins: {fileID: 0}
+  poopedMen: {fileID: 0}
+  progressSlider: {fileID: 0}
+  winFillImg: {fileID: 0}
+  stars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  starEmpty: {fileID: 21300000, guid: f38098d552a984003a237adf1d93ca19, type: 3}
+  starFull: {fileID: 21300000, guid: fb3d9ab77192f48d29273337d1eb43a5, type: 3}
+  trophyEmpty:
+    serializedVersion: 2
+    rgba: 3947580
+  trophyFull:
+    serializedVersion: 2
+    rgba: 4294967295

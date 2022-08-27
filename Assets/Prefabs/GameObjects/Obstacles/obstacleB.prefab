@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &952520864024915110
 Transform:
@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047435021640364001}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.5646036, y: 0.042200215, z: 0.38102514}
@@ -128,7 +128,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8180012416698993548
 Transform:
@@ -205,12 +205,13 @@ GameObject:
   m_Component:
   - component: {fileID: 9109658134670849963}
   - component: {fileID: 1426274028947159957}
+  - component: {fileID: -5507259574327412254}
   m_Layer: 0
   m_Name: obstacleB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &9109658134670849963
 Transform:
@@ -243,3 +244,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yMin: -1.28
   yMax: -4.6
+--- !u!114 &-5507259574327412254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441946247194864913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23c66ae8d456c9449af468bc656dc13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

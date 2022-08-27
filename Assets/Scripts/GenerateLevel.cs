@@ -27,11 +27,10 @@ public class GenerateLevel : MonoBehaviour
         pathCreator = GetComponent<PathCreator>();
         float points = pathCreator.path.length;
         
-        int gameObjectIndex = 0;
+        int gameObjectIndex = 1;
         for (float i = starter; i < (points - endPoint); i += coinDistance)
         {
             width = allWidth[Random.Range(0, allWidth.Length)];
-            gameObjectIndex = Random.Range(0, humanCompareToObstacle);
             Vector3 pos = pathCreator.path.GetPointAtDistance(i,endOfPathInstruction);
             Quaternion rot = pathCreator.path.GetRotationAtDistance(i,endOfPathInstruction);
             if ((i - starter) % distance != 0) createdObj = Instantiate(coin, pos,rot);
@@ -41,6 +40,7 @@ public class GenerateLevel : MonoBehaviour
                 {
                     int obsacleKind = Random.Range(0,obstacle.Length);
                     createdObj = Instantiate(obstacle[obsacleKind], pos, rot);
+                    gameObjectIndex = 1;
                 }
                 else if (gameObjectIndex != 0)
                 {
@@ -53,10 +53,10 @@ public class GenerateLevel : MonoBehaviour
                         SetWidth();
                     }
                     createdObj = Instantiate(human[Random.Range(0, human.Length)], pos, rot);
-
+                    gameObjectIndex = 0;
                 }
             }
-            if (!createdObj.GetComponentsInChildren<Transform>()[0].name.Contains("Danger1"))
+            if (!createdObj.GetComponentsInChildren<Transform>()[0].name.Contains("Danger1") && !createdObj.GetComponentsInChildren<Transform>()[0].name.Contains("obstacle"))
                 SetWidth();
         }
     }

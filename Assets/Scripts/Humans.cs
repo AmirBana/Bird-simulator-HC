@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Profiling;
 public class Humans : MonoBehaviour
 {
     public enum State
@@ -35,7 +36,7 @@ public class Humans : MonoBehaviour
         navMesh = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         finishPos = GameObject.FindWithTag("Finish").transform;
-        walkPos = GameObject.FindWithTag("Walk").transform;
+        //walkPos = GameObject.FindWithTag("Walk").transform;
         animator = GetComponentInChildren<Animator>();
         isMessed = false;
         offset = 2;
@@ -59,6 +60,7 @@ public class Humans : MonoBehaviour
     }
     void Update()
     {
+        Profiler.BeginSample("HumanTest");
         if(!isMessed && state == State.move)
         {
             MoveIdle();
@@ -67,9 +69,10 @@ public class Humans : MonoBehaviour
         {
             Invoke("NavMeshFollow", 1.5f);
         }
-        if (transform.position.z >= finishPos.position.z-5 && GameManager.Instance.gamefinish )
+        if (transform.position.z >= finishPos.position.z - 5 && GameManager.Instance.gamefinish)
         {
-            float finishTime = Random.Range(0.5f, 2f);
+            float[] time = { 0.5f, 1f, 1.5f, 2f };
+            float finishTime = time[Random.Range(0, time.Length)];
             navMesh.speed = 0;
             mess.SetActive(false);
             Invoke("FinishPath", finishTime);
@@ -82,6 +85,7 @@ public class Humans : MonoBehaviour
             Invoke("WalkBackDeathBird",walkTime);
         }
         SideDesider();
+        Profiler.EndSample();
     }
 
     void WalkBackDeathBird()

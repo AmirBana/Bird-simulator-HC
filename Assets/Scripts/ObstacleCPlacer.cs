@@ -5,6 +5,8 @@ public class ObstacleCPlacer : MonoBehaviour
     private float xMin, xMax;
     void Start()
     {
+        xMin = -2.5f;
+        xMax = 2.5f;
         Vector3 pos = transform.localPosition;
         int placeChooser = Random.Range(0, 3);
         if (placeChooser == 1)

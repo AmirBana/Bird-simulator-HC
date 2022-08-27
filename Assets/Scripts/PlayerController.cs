@@ -169,13 +169,13 @@ public class PlayerController : MonoBehaviour
                     }
                     if (localMovement)
                     {
-                      LeanTween.moveLocal( gameObject,newPos,0.4f).setEaseOutSine();
+                      LeanTween.moveLocal( gameObject,newPos,0.2f).setEaseOutSine();
                         if (newX > 0) animator.SetTrigger("TurnRight");
                         else if (newX < 0) animator.SetTrigger("TurnLeft");
                     }
                     else
                     {
-                        LeanTween.move(gameObject, newPos, 0.4f).setEaseOutSine();
+                        LeanTween.move(gameObject, newPos, 0.2f).setEaseOutSine();
                     }
                     isMoved = true;
                 }
@@ -239,15 +239,12 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.tag=="Human")
             {
-                print(hit.collider.name);
                 var target1 = hit.collider.transform;
                 hit.collider.gameObject.tag = "PoopHuman";
                 Side hitSide = hit.collider.gameObject.GetComponent<HumanSide>().side;
                 GameObject aim = hit.collider.gameObject.GetComponent<HumanSide>().mess;
-                print(target1.name);
                 if (hitSide == side) Pooping(true, aim);
                 else Pooping(false,aim);
-                //print("hit:"+hit.collider.name);
             }
         }
     }

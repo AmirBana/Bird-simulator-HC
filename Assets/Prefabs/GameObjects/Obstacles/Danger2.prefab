@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4070385119241069464}
+  - component: {fileID: 8282826366964556163}
   m_Layer: 0
   m_Name: Danger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4070385119241069464
 Transform:
@@ -32,6 +33,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8282826366964556163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392589001578386205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23c66ae8d456c9449af468bc656dc13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6652107280810833351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,6 +111,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: new barrier (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210254961437841093, guid: 53ba1408319c3fd4689217f27a4583fe,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333262632832166724, guid: 53ba1408319c3fd4689217f27a4583fe,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856225404926611815, guid: 53ba1408319c3fd4689217f27a4583fe,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53ba1408319c3fd4689217f27a4583fe, type: 3}

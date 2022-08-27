@@ -223,8 +223,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
-      maxColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+      minColor: {r: 0.7830189, g: 0.704717, b: 0.704717, a: 1}
+      maxColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.35686275}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4947,7 +4947,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8009203908529975970}
   m_LocalRotation: {x: 0, y: -0.13874105, z: 0, w: 0.9903287}
-  m_LocalPosition: {x: 0, y: 2.44, z: 0.38}
+  m_LocalPosition: {x: 0, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4975,7 +4975,7 @@ MonoBehaviour:
   yMin: 3
   yMax: 6
   speed: 0
-  normalSpeed: 5
+  normalSpeed: 6.5
   damagedSpeed: 3
   poopObj: {fileID: 8026598876826660781, guid: b23128abf6bcf974e9393113402c35a6, type: 3}
   poopSize: 5
@@ -5160,8 +5160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
   endOfPathInstruction: 2
-  speed: 5
-  sPoint: 30
+  speed: 6
+  sPoint: 5
 --- !u!1 &8792654264012749754
 GameObject:
   m_ObjectHideFlags: 0

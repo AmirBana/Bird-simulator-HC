@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         if (Instance == null)
             Instance = this;
         else
@@ -43,7 +44,6 @@ public class GameManager : MonoBehaviour
      public Image[] hearts;
      [SerializeField] TextMeshProUGUI coinSize;
      [SerializeField] TextMeshProUGUI ScoreTxt;
-     [SerializeField] TextMeshProUGUI finalScore;
      [SerializeField] TextMeshProUGUI homeCoins;
      [SerializeField] TextMeshProUGUI homeCurrentLevel;
      [SerializeField] private TextMeshProUGUI thisLevelTxt;
