@@ -8,11 +8,9 @@ public class UIManager : MonoBehaviour
 {
     public void Home_StartGame()
     {
-        GameManager.Instance.gameStart = true;
+        //GameManager.Instance.gameStart = true;
         GameManager.Instance.startpanel.SetActive(false);
-        string x = GameManager.Instance.allHumans.ToString();
-        print("all humans:"+x);
-        GameManager.Instance.inGamePanel.SetActive(true);
+        GameManager.Instance.resetPanel.SetActive(true);
     }
     public void Reset_StartGame()
     {
@@ -23,6 +21,7 @@ public class UIManager : MonoBehaviour
     public void Lost_Home()
     {
         PlayerPrefs.SetInt("isReset", 0);
+        if (Time.timeScale == 0) Time.timeScale = 1;
         GameManager.Instance.LostGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

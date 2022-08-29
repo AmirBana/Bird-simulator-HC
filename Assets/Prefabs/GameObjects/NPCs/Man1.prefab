@@ -42,11 +42,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3942912949251976968}
-  - component: {fileID: 3942912949251976971}
-  - component: {fileID: 3942912949251976970}
   - component: {fileID: 3942912949251976969}
   - component: {fileID: 2115892929}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Human
   m_Icon: {fileID: 0}
@@ -68,56 +66,6 @@ Transform:
   m_Father: {fileID: 3942912948030388873}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3942912949251976971
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3942912949251976975}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3942912949251976970
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3942912949251976975}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3942912949251976969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -252,8 +200,8 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 8
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 1
 --- !u!1001 &2710885864576090641
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -417,10 +365,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7905993360089513252, guid: 5a4d95e9e4197844abbbd28ea60f6446,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7905993360089513252, guid: 5a4d95e9e4197844abbbd28ea60f6446,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5a4d95e9e4197844abbbd28ea60f6446,
         type: 3}
       propertyPath: m_Name
       value: Walking (2) (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470424908983338204, guid: 5a4d95e9e4197844abbbd28ea60f6446,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470424908983338204, guid: 5a4d95e9e4197844abbbd28ea60f6446,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873742502583226469, guid: 5a4d95e9e4197844abbbd28ea60f6446,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873742502583226469, guid: 5a4d95e9e4197844abbbd28ea60f6446,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a4d95e9e4197844abbbd28ea60f6446, type: 3}

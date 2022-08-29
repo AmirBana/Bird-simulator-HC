@@ -67,7 +67,6 @@ MonoBehaviour:
   - {fileID: 0}
   coinSize: {fileID: 0}
   ScoreTxt: {fileID: 0}
-  finalScore: {fileID: 0}
   homeCoins: {fileID: 0}
   homeCurrentLevel: {fileID: 0}
   thisLevelTxt: {fileID: 0}
@@ -77,7 +76,6 @@ MonoBehaviour:
   progressSlider: {fileID: 0}
   winFillImg: {fileID: 0}
   stars:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
